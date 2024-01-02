@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "public_network", ip: "192.168.3.50"
+  config.vm.network "public_network", ip: "192.168.3.50", bridge: "wlp2s0"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -74,6 +74,7 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", path: "provision.sh"
   # config.vm.provision "shell", inline: <<-SHELL
   #   apt-get update
   #   apt-get install -y apache2
